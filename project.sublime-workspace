@@ -1,0 +1,655 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"margi",
+				"margin"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"cl",
+				"clear"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"im",
+				"imgMargin"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"bac",
+				"background-repeat"
+			],
+			[
+				"marg",
+				"margin"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"ma",
+				"margin-right"
+			],
+			[
+				"paddin",
+				"padding"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"gra",
+				"gradient"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"grayL",
+				"grayLighter"
+			],
+			[
+				"fade",
+				"fadeIn"
+			],
+			[
+				"suce",
+				"success"
+			],
+			[
+				"_",
+				"_post	CI - $_POST"
+			],
+			[
+				"preve",
+				"preventClick"
+			],
+			[
+				"true",
+				"TRUE"
+			],
+			[
+				"upl",
+				"upload_file"
+			],
+			[
+				"slide",
+				"slideRight"
+			],
+			[
+				"bor",
+				"border-bottom"
+			],
+			[
+				"fon",
+				"font-style"
+			],
+			[
+				"link",
+				"linkColor"
+			],
+			[
+				"border",
+				"border-top"
+			],
+			[
+				"background-c",
+				"background-color"
+			],
+			[
+				"borde",
+				"border-top"
+			],
+			[
+				"bo",
+				"box-shadow"
+			],
+			[
+				"border-r",
+				"border-right"
+			],
+			[
+				"list",
+				"list-style-type"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"text-",
+				"text-indent"
+			],
+			[
+				"padding-",
+				"padding-right"
+			],
+			[
+				"pa",
+				"padding"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"displa",
+				"display	display: block"
+			],
+			[
+				"box-s",
+				"box-shadow"
+			],
+			[
+				"sub",
+				"substr"
+			],
+			[
+				"le",
+				"left"
+			],
+			[
+				"na",
+				"navbar-fixed-top"
+			],
+			[
+				"tra",
+				"transport-box"
+			],
+			[
+				"u",
+				"uppercase"
+			],
+			[
+				"form",
+				"form_input	form_input"
+			],
+			[
+				"Shot",
+				"Shortfilm"
+			],
+			[
+				"blo",
+				"block"
+			],
+			[
+				"print",
+				"print_r"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/User/less.sublime-build",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"pac",
+				"Package Control: Remove Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"ls",
+				"Tag: Lint Selection or Document"
+			],
+			[
+				"SFT",
+				"SFTP: Browse Server…"
+			],
+			[
+				"SF",
+				"SFTP: Browse Server…"
+			],
+			[
+				"SFTP",
+				"SFTP: Browse Server…"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"mark",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"mar",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"PAC",
+				"Package Control: Install Package"
+			],
+			[
+				"PACK",
+				"Package Control: List Packages"
+			],
+			[
+				"",
+				"Package Control: Install Package"
+			],
+			[
+				"html",
+				"Tidy HTML"
+			],
+			[
+				"Pa",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: L",
+				"Snippet: Lorem ipsum"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/tallerdelsoho/Dropbox/Sites/_dev/pretzel/pretzel.md",
+		"/Users/tallerdelsoho/Dropbox/Sites/_dev/pretzel/flatdoc.html",
+		"/Users/tallerdelsoho/Dropbox/Sites/_dev/pretzel/index.html",
+		"/Users/tallerdelsoho/Dropbox/Sites/_dev/pretzel/src/coffee/APPBIO.Script.coffee",
+		"/Users/tallerdelsoho/Dropbox/Sites/_dev/pretzel/src/coffee/APPBIO.Wrap.coffee",
+		"/Users/tallerdelsoho/Dropbox/Sites/_dev/pretzel/src/coffee/APPBIO.Config.coffee",
+		"/Users/tallerdelsoho/Dropbox/Sites/_dev/pretzel/src/coffee/APPBIO.app.coffee",
+		"/Users/tallerdelsoho/Dropbox/Sites/_dev/pretzel/src/coffee/saplecode.demo",
+		"/Users/tallerdelsoho/Dropbox/Sites/_dev/pretzel/src/coffee/APPBIO.coffee"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"Project",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"_log ",
+			"_log",
+			"yt",
+			"margin-bottom",
+			"5px",
+			"BJT",
+			"var structure =",
+			"menu",
+			"coffe",
+			"bt-title",
+			"after",
+			"zip_path",
+			"print_r",
+			"echo",
+			"ecgo",
+			"echo",
+			"social-links",
+			"matches",
+			"enabled",
+			"$row",
+			"$article",
+			"$row",
+			"myUfolder",
+			"Powered",
+			"rt-block",
+			"readmore",
+			"rt-sidebar-a",
+			"wTitle",
+			"hovereffect",
+			"next",
+			"<a href=\"#\"",
+			"prev_button",
+			"structure",
+			"-next",
+			"_prev",
+			"prev_button",
+			"mouseOverButton",
+			"self.box_skitter.find('.next_button, .prev_button').bind('mouseover', self.mouseOverButton);",
+			"prev_button",
+			"navigation",
+			"prev_button",
+			"none",
+			"prev_button",
+			"_resizeItems",
+			"social",
+			"h2",
+			"joomUcontFolder",
+			"joomUcont",
+			"joomucont",
+			"item-page",
+			"brd",
+			"bodytextlight",
+			"rt-",
+			"white",
+			"\"\"",
+			" style=\"line-height: 1.3em;",
+			"@white",
+			"white",
+			"btn-inverse",
+			"btn-inverse.active",
+			"white",
+			"whiyte",
+			"@blanco",
+			"@white",
+			"@blanco",
+			"@white",
+			"@blanco",
+			"@white",
+			"white",
+			"@white",
+			"white",
+			"Menu Mo",
+			"ul.menu",
+			"font",
+			"readmore",
+			"glass",
+			"readmore",
+			"#0088cc",
+			"005580",
+			"toptitle",
+			"module-title",
+			"_prev",
+			"box_skitter",
+			"#000000",
+			".bt-title",
+			"bt-title",
+			"restore",
+			"#rt-top-surround",
+			"z-index",
+			"	z-index: 0;",
+			"z-inde",
+			"http://localhost/_sites/eboracast.com/www/",
+			"z-inde",
+			"z-index",
+			"bt-slide",
+			"dropdown",
+			"complete",
+			"css",
+			"l2",
+			"menu.less",
+			"menu",
+			"img",
+			"transition",
+			"bt-title",
+			"bt-category",
+			"rocket ",
+			"rocket",
+			"#rocket",
+			"background",
+			"hovereffect",
+			"bt-caption-content",
+			"bt-caption",
+			"bt-caption-content",
+			"background",
+			"item-page",
+			"img ",
+			"image",
+			"images",
+			"image",
+			"magic_quotes_gpc",
+			"    ",
+			"     ",
+			"        ",
+			"menu-bottom",
+			"#gantry-totop",
+			"totop",
+			"icomoon.less",
+			"font"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"$article",
+			"joomZipFolder",
+			"joomzip",
+			"\"",
+			"",
+			"@blanco",
+			"@white",
+			"@fff",
+			"@blanco",
+			"@white",
+			"@blanco",
+			"#47de26",
+			"@black;",
+			"	//z-index: 0;",
+			"\n",
+			"\\r",
+			".-logotipo ",
+			"images/skitter/",
+			"/images/tira/",
+			"@white;",
+			"@white",
+			"	//text-shadow:",
+			"//.box-shadow",
+			"	//.border-radius",
+			"	//border: 1px",
+			"app_",
+			"_2013",
+			"'9999px",
+			"'px'",
+			"",
+			"biojazzard",
+			"",
+			"nope",
+			"btn-small",
+			"btn-mini",
+			"-small",
+			"20px;",
+			"navthird",
+			"@blue",
+			"@grayLighter",
+			"@grayLight",
+			"@white",
+			"@red",
+			".header",
+			".wrapper",
+			"areablue",
+			"canary-sub",
+			"@blue",
+			"img/eventos/",
+			"",
+			"\"bio-box\"",
+			"@baseGrayscale",
+			"grayscale",
+			"graysacle",
+			"Rebotes",
+			"NO Abiertos",
+			"Abiertos",
+			"Enviados",
+			"padding: 16px",
+			"BIOJAZZARD_",
+			"| ",
+			"",
+			", ",
+			"FABC00",
+			"Alegreya SC",
+			"transform",
+			"tds-",
+			"92",
+			"bt-handles",
+			"git rm ",
+			"git rm t",
+			"./src",
+			"rm -Rvf ./",
+			"\\ ",
+			"rm ",
+			" ",
+			"\\ ",
+			"Caostica 10",
+			"</h3>",
+			"<h3>",
+			"</h3>",
+			"<h3>",
+			"Caostica 10",
+			"/2012/",
+			"cortos10_desc",
+			"",
+			"_html5/_nav",
+			"_html5/_footer",
+			"| 2012 @biojazzard",
+			"@biojazzard",
+			"@ 2012",
+			"05.CI_2.01 @ 2012 Alfredo Llanos",
+			"Bases 05.CI_2.1 former CineManager",
+			"Bases | View 05.CI_2.1 @ 2012 Alfredo Llanos",
+			"parent()",
+			"grayLighter",
+			"js/min/",
+			"dbox/",
+			"",
+			"../images/",
+			"_JS_",
+			"_JS_EXT_",
+			"\"../ruta/p/\"",
+			"GRIDCSS"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"output.sftp":
+	{
+		"height": 289.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": false,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 304.0,
+	"status_bar_visible": true
+}

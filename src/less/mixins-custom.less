@@ -1,0 +1,273 @@
+//
+// Mixins
+// --------------------------------------------------
+
+@keyframes typoGlowAnim {
+  0% { 
+    alpha: 0%;
+  }
+  50% {
+    alpha: 33%;
+  }
+  100% {
+    alpha: 66%;
+  }
+}
+
+#typo {
+
+  .sumo (@size, @color, @linkColor) {
+    @half: @size / 2;
+    color: @color;
+    font-size: @size;
+    line-height: 1.0;
+    a {
+      color: @linkColor;
+      text-decoration: none;
+      &:hover {
+        color: @color;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .dosis (@size, @color, @linkColor) {
+    @half: @size / 2;
+    color: @color;
+    text-decoration: none;
+    font-size: @size;
+    line-height: 1.0;
+    cursor: pointer;
+    &:hover {
+      color: @linkColor;
+      text-decoration: none;
+      //#typo > .glow (1px, @brown);
+      //animation: typoGlowAnim 1s infinite
+    }
+    a {
+      color: @color;
+      text-decoration: none;
+      cursor: pointer;
+      &:hover {
+        color: @linkColor;
+        text-decoration: none;
+        //#typo > .glow (1px, @brown);
+        //animation: typoGlowAnim 1s infinite
+      }
+    }
+  }
+
+  .dosis-no (@size, @color, @linkColor) {
+    @half: @size / 2;
+    color: @color;
+    text-decoration: none;
+    font-size: @size;
+    line-height: 1.0;
+    cursor: pointer;
+    a {
+      color: @color;
+      text-decoration: none;
+      cursor: pointer;
+      &:hover {
+        color: @linkColor;
+        text-decoration: none;
+        //#typo > .glow (1px, @brown);
+        //animation: typoGlowAnim 1s infinite
+      }
+    }
+  }
+
+  .glow (@size: 1px, @shadowColor: @brown, @hoverShadowColor: @white, @spread: 0px) {
+    @shadowOp: lighten(@shadowColor, 5%);
+    text-shadow: 0px -@size @spread @shadowOp,
+              -@size 0px @spread @shadowOp,
+               @size 0px @spread @shadowOp,
+               0px @size @spread @shadowOp;
+    &:hover {
+      text-shadow: 0px -@size @spread @hoverShadowColor,
+                -@size 0px @spread @hoverShadowColor,
+                 @size 0px @spread @hoverShadowColor,
+                 0px @size @spread @hoverShadowColor;      
+    }
+  }
+
+  .hoverGlow (@size: 1px, @shadowColor: @brown, @hoverShadowColor: @white) {
+    @shadowOp: lighten(@shadowColor, 5%);
+    &:hover {
+      text-shadow: 0px -@size 0px @hoverShadowColor,
+                -@size 0px 0px @hoverShadowColor,
+                 @size 0px 0px @hoverShadowColor,
+                 0px @size 0px @hoverShadowColor;      
+    }
+  }
+
+  .headers (@size, @color, @linkColor) {
+    h1, h2, h3, h5, h6 {
+      color: @color;
+      font-weight: 400;
+      line-height: 1.0;
+      span {
+        color: @black;
+        text-shadow: none;
+        font-size: 50%;
+        line-height: 100%;
+      }
+      i {
+        font-size: 80%;
+      }
+    }
+    h5 {
+      text-align: center;
+      span {
+        color: @black;
+        text-shadow: none;
+        font-size: 50%;
+        line-height: 100%;
+      }
+      i {
+        font-size: 80%;
+      }
+      em {
+        font-size: @size * .8;
+        font-style: normal;
+      }
+    }
+    p {
+      color: @color;
+      line-height: 1.0;
+      span {
+        color: @black;
+        text-shadow: none;
+        font-size: 50%;
+        line-height: 100%;
+      }
+      i {
+        font-size: 80%;
+      }
+    }
+    h1 {
+      #typo > .sumo (@size * 1.61, @color, @linkColor);
+      //#typo > .glow (1px, @black, @black)
+    }
+    h2 {
+      #typo > .sumo (@size * 1.41, @color, @linkColor);
+      //#typo > .glow (2px, @black, @white)
+    }
+    h3 {
+      #typo > .sumo (@size * 1.21, @color, @linkColor);
+      //#typo > .glow (1px, @black, @black)
+    }
+    h4 {
+      #typo > .dosis-no (@size * 0.5, @linkColor, @linkColor);
+      //margin-left: 1.0em;
+      //#typo > .hoverGlow (1px, @brown, @white)
+    }
+    h5 {
+      #typo > .dosis (@size * 1.00, @linkColor, @color);
+      //#typo > .hoverGlow (1px, @brown, @white)
+    }
+    h6 {
+      #typo > .sumo (@size * 0.61, @color, @linkColor);
+      //#typo > .glow (1px, @white, @white)
+    }
+    p {
+      #typo > .sumo (@size * 0.61, @color, @linkColor);
+      //#typo > .glow (1px, @white, @white)
+    }
+  }
+
+}
+
+#canary {
+  .box (@size) {
+    display: block;
+    margin-bottom: 6px;
+    padding: 0;
+    min-height: @size * 2.59 * 1.61;
+    text-indent: @size * 2.59;
+    font-weight: 200;
+    i {
+      padding-right: 16px;
+    }
+    .box-sizing (border-box);
+    .box-shadow (1px 1px 4px rgba(0,0,0,.5));
+  }
+  .border (@size, @color) {
+    //border: 1px solid lighten(@color, 5%);
+    .border-top-left-radius (@size * 2.59);
+    .border-top-right-radius (@size / 1.61);
+    .border-bottom-left-radius (@size / 1.61);
+    .border-bottom-right-radius (@size / 1.61);  
+  }
+  .bg (@bgcolor) {
+    &:hover {
+      #gradient > .directional(darken(@bgcolor, 5%), @bgcolor, 90deg);     
+    }
+    #gradient > .directional(@bgcolor, @bgcolor, 90deg);
+  }
+  .text (@size, @color) {
+    h1, h2, h3, h4, h5, h6, p {
+      margin: 0;
+      line-height: 1;
+    }
+    h1 {
+      padding-top: @size / 2;
+      color: @color;
+      font-size: @size * 1.61;
+    }
+    h2, h3 {
+      padding-top: 0;
+      color: lighten(@color, 6%);
+      font-size: @size;
+    }
+    h4 {
+      padding-top: @size / 2;
+      color: @color;
+      font-size: @size * 0.6;
+    }
+    h5, h6, p {
+      padding-bottom: 4px;
+      color: darken(@white, 4%);
+      font-size: @size + 2;
+    }
+    #typo > .glow (@size, @color);
+  }
+  .layer (@size, @bgcolor, @color) {
+    #canary > .box (@size);
+    #canary > .border (@size, @bgcolor); //navbarBorder
+    #canary > .bg (@bgcolor); //navbarBackgroundHighlight
+    #canary > .text (@size, @color);
+  }
+}
+
+.transform-style (@style: preserve-3d) {
+  -webkit-transform-style: @style;
+     -moz-transform-style: @style;
+      -ms-transform-style: @style;
+       -o-transform-style: @style;
+          transform-style: @style;
+}
+
+.backface-visibility (@style: hidden) {
+  -webkit-backface-visibility: @style;
+     -moz-backface-visibility: @style;
+      -ms-backface-visibility: @style;
+       -o-backface-visibility: @style;
+          backface-visibility: @style;
+}
+
+.perspective (@size: 400px) {
+  -webkit-perspective: @size;
+     -moz-perspective: @size;
+      -ms-perspective: @size;
+       -o-perspective: @size;
+          perspective: @size;
+}
+
+.radial-gradient (...) {
+    background-image: -webkit-radial-gradient(@arguments);
+    background-image: -moz-radial-gradient(@arguments);
+    background-image: -ms-radial-gradient(@arguments);
+    background-image: -o-radial-gradient(@arguments);
+    background-image: radial-gradient(@arguments);
+}

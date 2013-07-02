@@ -1,0 +1,115 @@
+
+/*
+ * clean
+ */
+
+#clean {
+  .btnx (@dist) {
+    display:block;
+    width:@dist;
+    height:@dist;
+    border: 2px solid @black;
+    .border-radius (@dist);
+    .box-sizing (border-box);
+    text-align: center;
+    overflow:hidden;
+    font-size: @dist / 2;
+    font-weight: bold;
+    line-height: 1.8;
+    color: @black;
+    background-color: @white;
+    border: 2px solid @black;
+    &.active {
+      color: @white;
+      background-color: @black;
+      border: 2px solid @black;
+    }
+    &:hover {
+      border: 2px solid @white;
+      background-color: @linkColor;
+    }
+  }
+}
+
+.slides {
+  display:none;
+  margin-top: @dist / 2;
+  margin-bottom: @dist / 2;
+  .slidesjs-navigation {
+    //margin-top:@dist / 2;
+  }
+  .slidesjs-container{
+    margin-bottom: @dist / 2;
+  }
+}
+
+.clean {
+  > .slidesjs-nav {
+    display: block;
+    width: auto;
+    margin:0;
+    padding:0;
+    float:left;
+    list-style:none;
+    li {
+      float:left;
+      margin:0;
+      padding:0;
+      a {
+        #clean > .btnx (@dist);
+      }
+    }
+    .slidesjs-next,
+    .slidesjs-previous,
+    .slidesjs-play,
+    .slidesjs-stop {
+      float:left;
+    }
+
+    .slidesjs-previous {
+      &:after {
+        content: '<';
+      }
+    }
+
+    .slidesjs-next {
+      &:after {
+        content: '>';
+      }
+    }
+
+    .slidesjs-play {
+      &:after {
+        content: '';
+      }
+    }
+
+    .slidesjs-stop {
+      &:after {
+        content: 'π';
+      }
+    }
+  }
+
+  > .slidesjs-pagination {
+    display: block;
+    width: auto;
+    margin:0;
+    padding:0;
+    float:right;
+    list-style:none;
+    li {
+      float:left;
+      margin:0;
+      padding:0;
+      a {
+        #clean > .btnx (@dist);
+      }
+    }
+  }
+
+  > .navbar {
+    overflow:hidden;
+  }
+
+}

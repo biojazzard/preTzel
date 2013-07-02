@@ -1,0 +1,97 @@
+
+/*
+ * square
+ */
+
+.skitter-square {
+  .play_pause_button {
+    top:10px;
+    right:auto;
+    bottom:auto;
+    left:10px;
+    display:block;
+    margin-top:0;
+    width:55px;
+    height:55px;
+    background:url('../images/sprite-square.png') no-repeat;
+    background-position:-55px -0px;
+  }
+  .next_button {
+    top:auto;
+    right:10px;
+    bottom:10px;
+    left:auto;
+    display:block;
+    width:55px;
+    height:55px;
+    background:url('../images/sprite-square.png') no-repeat;
+    background-position:-0px -55px;
+  }
+  .focus_button {
+    top:10px;
+    right:auto;
+    bottom:auto;
+    left:65px;
+    display:block;
+    margin-top:0;
+    width:55px;
+    height:55px;
+    background:url('../images/sprite-square.png') no-repeat;
+    background-position:-55px -55px;
+  }
+  .prev_button {
+    top:auto;
+    right:65px;
+    bottom:10px;
+    left:auto;
+    display:block;
+    width:55px;
+    height:55px;
+    background:url('../images/sprite-square.png') no-repeat;
+    background-position:-0px -110px;
+  }
+  .play_pause_button.play_button {
+    width:55px;
+    height:55px;
+    background-position:-0px -0px;
+  }
+  .info_slide {
+    background:transparent;
+    .image_number_select, .image_number_select:hover {
+      background:#111111;
+      color:@white;
+    }
+    .image_number {
+      background:@white;
+      box-shadow:rgba(0,0,0,0.2) 1px 1px 0;
+      color:@grayDark;
+      font-weight:normal;
+      font-size:12px;
+    }
+    .image_number:hover {
+      background:#cccccc;
+    }
+  }
+  .info_slide_dots {
+    .image_number_select, .image_number_select:hover {
+      background:#555555;
+    }
+    .image_number {
+      width:14px;
+      height:14px;
+      background:#cccccc;
+      box-shadow:rgba(255,255,255,0.2) 1px 1px 0;
+    }
+    .image_number:hover {
+      background:@grayLight;
+    }
+  }
+  .progressbar {
+    top:0;
+    left:0;
+    width:100%;
+    height:2px;
+    border-radius:0;
+    background:@white;
+  }
+}

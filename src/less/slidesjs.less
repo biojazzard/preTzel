@@ -1,0 +1,50 @@
+/* CUSTOM VARS */
+
+  @dist: 48px;
+
+/* INTERNAL VARS */
+
+@pad: @dist / 4;
+
+.slides {
+  display: none;
+}
+
+/* For tablets & smart phones */
+@media (max-width: 767px) {
+  body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .container {
+    width: auto;
+  }
+}
+
+/* For smartphones */
+@media (max-width: 480px) {
+  .container {
+    width: auto;
+  }
+}
+
+/* For smaller displays like laptops */
+@media (min-width: 768px) and (max-width: 979px) {
+  .container {
+    width: 724px;
+  }
+}
+
+@media (min-width: 980px) and (max-width: 1199px) {
+  .container {
+    width: 940px;
+  }
+}
+
+/* For larger displays */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+

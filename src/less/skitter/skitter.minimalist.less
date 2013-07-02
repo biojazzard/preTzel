@@ -1,0 +1,62 @@
+/*
+ * minimalist
+ */
+
+.skitter-minimalist {
+  .prev_button {
+    left: 0;
+    #skitter > .minimalist_pn (@dist);
+    &:after {
+      /* font itself */
+      content: "\f053";
+      float: left;
+    }
+  }
+  .next_button {
+    right: 0;
+    #skitter > .minimalist_pn (@dist);
+    &:after {
+      content: "\f054";
+      float: right;
+    }
+  }
+  .play_pause_button {
+    display:block;
+    width:@dist;
+    height:@dist;
+  }
+  .focus_button {
+    display:block;
+    width:@dist;
+    height:@dist;
+  }
+  .play_pause_button.play_button {
+    width:@dist;
+    height:@dist;
+  }
+  .info_slide {
+    background:transparent;
+    .info_slide_dots {
+      .image_number {
+        width:@dist;
+        height:@dist;
+        box-shadow:rgba(255,255,255,0.2) 1px 1px 0;
+        background: @black;
+        font-weight:normal;
+        &:hover {
+          background: lighten(@black, 5%);
+        }
+        &.image_number_select {
+          background: @red;
+          &:hover {
+            background: @orange;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+

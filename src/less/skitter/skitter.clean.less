@@ -1,0 +1,57 @@
+
+/*
+ * clean
+ */
+
+.skitter-clean {
+  .prev_button {
+    left:@dist * 2;
+    #skitter > .prnxt (@dist);
+    &:after {
+      content: "\f053";
+    }
+  }
+  .next_button {
+    right:@dist * 2;
+    #skitter > .prnxt (@dist);
+    &:after {
+      content: "\f054";
+    }
+  }
+  .play_pause_button {
+    display:block;
+    width:41px;
+    height:41px;
+    background:url('../images/sprite-clean.png') no-repeat;
+    background-position:-0px -133px;
+  }
+  .focus_button {
+    display:block;
+    width:41px;
+    height:41px;
+    background:url('../images/sprite-clean.png') no-repeat;
+    background-position:-0px -174px;
+  }
+  .play_pause_button.play_button {
+    width:41px;
+    height:41px;
+    background-position:-0px -92px;
+  }
+  .label_skitter {
+    position:absolute;
+    bottom:0px;
+    left:0px;
+    left:0px;
+    z-index:150;
+    display:none;
+    //#gradient > .horizontal (hsla(0, 0%,0%, 100%), hsla(0, 0%,0%, 0%));
+    color:@white;
+    padding:10px;
+  }
+  .progressbar {
+    top:5px;
+    left:5px;
+    background:@white;
+    box-shadow:rgba(0,0,0,0.5) 1px 1px 0;
+  }
+}

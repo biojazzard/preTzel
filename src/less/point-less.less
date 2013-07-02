@@ -1,0 +1,112 @@
+@left : 33.3333%;
+@top : 66.6666%;
+
+@brd: 4px;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.container {
+  min-height: 200px;
+}
+
+#grid {
+
+  .default () {
+    background-size: 100% 100%;
+  }
+ 
+  .zoom200 () {
+    background-size: 200%;
+  }
+
+  .cover () {
+    background-size: cover;
+  }
+  
+  .contain () {
+    background-size: contain;
+  }
+
+  .draw () {
+    &:after {
+      position: absolute;
+      border: @brd dotted rgba(255,255,255,1);
+      content: '';
+      top: 0;
+      left: 0;
+      width: @left;
+      height: @top;
+      border-width: 0 @brd @brd 0;
+      background-color: rgba(0, 255, 0, 0.3);
+     }
+    &:before {
+      position: absolute;
+      border: @brd dotted rgba(255,255,255,1);
+      content: '';
+      left: @left;
+      top: @top;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 255, 0, 0.3);
+      &:first-child {
+        border-left: 0;
+      }
+    }
+  }
+}
+
+.focal-point {
+  content: '';
+  display:block;
+  height: 100%;
+  background-repeat: no-repeat;
+  float: left;
+  border: 0;
+  background-position:@left @top;
+  position: relative;
+  overflow: hidden;
+  #grid > .draw();
+  //#grid > .contain();
+}
+
+.default {
+  #grid > .default ();
+}
+
+.zoom200 {
+  #grid > .zoom200 ();
+}
+
+.cover {
+  #grid > .cover ();
+}
+
+.contain {
+  #grid > .contain ();
+}
+
+.w60 {
+  width: 60%;
+  content: '';
+}
+
+.w30 {
+  width: 30%;
+  content: '';
+}
+
+.w10 {
+  width: 10%;
+  content: '';
+}
+
+.processed {
+
+}

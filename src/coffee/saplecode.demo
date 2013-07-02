@@ -1,0 +1,577 @@
+###
+ * @namespace APPBIO
+ *
+ * @author Alfredo Llanos <alfredo@tallerdelsoho.es> || @biojazzard
+###
+
+APPBIO.Script = ((appbio, $, µ, undefined_) ->
+
+  s = null
+  position = null
+  config =
+    settings:
+      #Grid
+      gridEnable: false
+      grid: $("#ri-grid")
+      skitter: $('.box_skitter_large')
+      slidesjs: $('#slides')
+      # cfg
+      path: 'php'
+      addr1: 'C%2F+Ledesma,5,+48001+Bilbao'
+      addr2: 'SUMO @43.261847,-2.940195'
+      addr3: 'elkano,+6,+san+sebastian'
+      emailAdded: false
+      # layers
+      emailDiv: $('#eml')
+      getdirDiv: $('#getdir')
+      getdirDivP: $('#getdirp')
+      getdirDivD: $('#getdird')
+      # Menu Buttons
+      onMap1: $('#onMap1')
+      onMap2: $('#onMap2')
+
+      descDiv: $('#description')
+      slide: $('#description')
+
+      miniMenu: $('.mini-menu a')
+      locMenu: $('.loc-menu a')
+    position:
+      lat: ''
+      lon: ''
+
+  geopts = 
+    maximumAge: 100
+    timeout: 7000
+    enableHighAccuracy: true
+
+  #global vars
+  init = () ->
+
+    ###
+     # init
+    ###
+
+    #_log '@Script.init'
+
+    s = config.settings
+
+    _fitTexts()
+    if s.gridEnable == true
+      #_makeGrid s.grid
+    else 
+      #_fakeGrid s.grid    
+
+    _magikMenu s.miniMenu
+    #_magikMenu s.locMenu
+
+    _start()
+    _upload()
+
+    _slidesjs()
+    _skitter()
+    _pointLess()
+  
+  ###
+   # Functions
+  ###
+
+  _pointLess = () ->
+
+    $(".crop").each(->
+      $(this).css(
+        "content": "url(" + @src + ")"
+        #"background-image": "url(" + @src + ")"
+      ).addClass "processed"
+    ).attr "src", ""
+
+
+  _slidesjs = () ->
+
+    if (s.slidesjs.length > 0)
+      #Moved to cooffee:
+      #s.slidesjs.addClass('minimal')
+      s.slidesjs.slidesjs({
+        # templates: 'minimal', 'clean', 'dark'
+        template: 'dark'
+        width: 940
+        height: 528
+        play: {
+          active: true,
+            #[boolean] Generate the play and stop buttons.
+            # You cannot use your own buttons. Sorry.
+          effect: "fade",
+            # [string] Can be either "slide" or "fade".
+          interval: 5000,
+            # [number] Time spent on each slide in milliseconds.
+          auto: false,
+            # [boolean] Start playing the slideshow on load.
+          swap: true,
+            # [boolean] show/hide stop and play buttons
+          pauseOnHover: false,
+            # [boolean] pause a playing slideshow on hover
+          restartDelay: 2500
+            # [number] restart delay on inactive slideshow
+        }
+        loader:
+          #json: 'upload/skitter'
+          json: 'upload/json'
+      });
+
+  _skitter = () ->
+
+    if (s.skitter.length > 0)
+      console.log('skitter')
+      s.skitter.skitter({
+        # true, false
+        fullscreen: false
+        # Load From
+        json: 'upload/json'
+        # Defaulf animation_type
+        animation_type:  'random',
+        with_animations:    ['fadeFour', 'fade']
+        # clean, minimalist, round, square
+        theme:          'minimalist'
+        numbers_align:  'right'
+        progressbar:    false
+        dots:           true 
+        preview:        true
+      });
+
+  _start = () ->
+
+    #console.log '@Script.init->start'
+
+    s = config.settings
+    d = $(document)
+
+    s.emailDiv.on 'mouseenter', (e) ->
+      e.stopPropagation()
+      e.preventDefault()
+
+      if !s.emailAdded
+        eml = '/sumo|sumobilbao.com'
+        eml = eml.replace('|', '@').replace('/', '')
+        s.emailDiv.attr 'href', 'mailto:' + eml
+        s.emailDiv.html '<i class="icon-envelope"></i> <span>' + eml + '</span>'
+        s.emailAdded = true
+
+    ###
+    $(document).bind 'mousedown', (e) ->
+      $(event.target).trigger('touchstart')
+    ###
+
+    $(window).resize ->
+      setTimeout(() ->
+        _resizeItems()
+      , 330)
+
+    setTimeout(() ->
+      _geo()
+    , 1610)
+
+    ###
+    setTimeout(() ->
+      _wrtIframe 'ifr_fb-tdsocial', 'http://www.facebook.com/plugins/like.php?href=http://www.sumobilbao.com&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;colorscheme=light&amp;height=100&amp;locale=es_ES', 118, 32, 'no', 'false'
+      _wrtTweet document
+      #_wrtGplus document
+      _resizeItems()
+      $('.row-bordered').fadeIn('slow')
+    , 3220)
+    ###
+
+  _geo = () ->
+    s = config.settings
+    p = config.position
+
+    if µ.geolocation
+
+      ((geolocation) ->
+        return if geolocation
+        cache = undefined
+        geolocation = window.navigator.geolocation = {}
+        geolocation.getCurrentPosition = (callback) ->
+          callback cache if cache
+          $.getScript '//www.google.com/jsapi', ->
+            # sometimes ClientLocation comes back null
+            if google.loader.ClientLocation
+              cache = coords:
+                latitude: google.loader.ClientLocation.latitude
+                longitude: google.loader.ClientLocation.longitude
+            callback cache
+        geolocation.watchPosition = geolocation.getCurrentPosition
+      ) navigator.geolocation
+
+      opts = geopts
+
+      navigator.geolocation.getCurrentPosition ((position) ->
+        _renderLink position.coords.latitude, position.coords.longitude, s.addr1, s.addr2, s.addr3
+      ), _onGeolocationError, opts
+
+  _fakeGrid = (elem) ->
+    elem.fadeIn 'slow'
+    $('.nopic').fadeIn()
+    .css('display', 'block')
+    .css('width', '100%')
+    .css('height', '100%')
+
+    $('.ri-loading-image').fadeOut()
+    gridWidth = $('#ri-grid > ul').width() * ( 4 / 5 )
+
+    $('.instagram').slice(0, 20).fadeIn().css('width', gridWidth / 4).css('height', gridWidth / 4)
+
+    $('#ri-grid > ul').fadeIn().css('width', '100%').css('height', gridWidth)
+
+  _makeGrid = (elem) ->
+
+    elem.gridrotator
+      animSpeed: 990
+      interval: 4500
+      animType: 'slideRight'
+      animEasingOut: 'linear'
+      animEasingIn: 'linear'
+      w1024:
+        rows: 4
+        columns: 5
+      w980:
+        rows: 4
+        columns: 5
+      w768:
+        rows: 4
+        columns: 4
+      w480:
+        rows: 3
+        columns: 3
+      w340:
+        rows: 2
+        columns: 2
+      w240:
+        rows: 2
+        columns: 2
+      #nochange: [7, 22]
+      step: 0
+      maxStep: 0
+      preventClick: false
+      slideshow: false
+      onhover: true
+
+  _fitTexts = () ->
+    # we have videos in /evets
+    if $('h1.sumo_title').length > 0
+      $('h1.sumo_title').fitText .36
+        #minFontSize: 32
+        #maxFontSize: '42px'
+
+  _upload = () ->
+
+    $('.progress').fadeOut('fast')
+
+    options =
+      target:         '#output',   # target element(s) to be updated with server response 
+      beforeSubmit:   _beforeSubmit,  # pre-submit callback 
+      success:        _afterSuccess  # 3 post-submit callback
+      error:          _onFormError
+      # other available options: 
+      url:       'upload/upload_file'         # override for form's 'action' attribute 
+      type:      'post'        # 'get' or 'post', override for form's 'method' attribute 
+      dataType:  'json'         # 'xml', 'script', or 'json' (expected server response type) 
+      clearForm: true         # clear all form fields after successful submit 
+      resetForm: true         # reset the form after successful submit 
+
+      # $.ajax options can be used here too, for example: 
+      #timeout:   3000
+
+    $('#FileUploader').ajaxForm(options);
+
+  _onFormError = () ->
+    _log 'FormEror'
+
+  _beforeSubmit = (formData, jqForm, options) ->
+    console.log ('_beforeSubmit')
+    $('#uploadButton').attr 'disabled', ''
+    #$("#output").html '<img src="../img/ajax-loader.gif" alt="Please Wait"/> <span>Uploading...</span>'
+    $('.progress').fadeIn('slow')
+    # formData is an array; here we use $.param to convert it to a string to display it 
+    # but the form plugin does this for you automatically when it submits the data 
+    queryString = $.param(formData); 
+ 
+    # jqForm is a jQuery object encapsulating the form element.  To access the 
+    # DOM element for the form do this: 
+    # var formElement = jqForm[0]; 
+ 
+    #_log 'About to submit: ' + queryString
+ 
+    # here we could return false to prevent the form from being submitted; 
+    # returning anything other than false will allow the form submit to continue 
+   
+  _afterSuccess = (data, status, xhr, $form) ->
+    # UI
+
+    #_log data.auth
+    # data.status
+    #_log data.msg
+
+    if data.auth == false
+
+      $('#output').prepend data.msg
+      $('#files').html ''
+
+    else
+      $('#output').html data.msg
+      $('.message').fadeIn()
+      $.get('upload/files').success (dataReq) ->
+        $('#files').html dataReq
+
+      ###
+       # DELETE FILE
+      ###
+
+      $(document).on 'click', '.log-btn', (e) ->
+        $('#output').toggle()
+
+      $(document).on 'click', '.delete_file_link', (e) ->
+        e.preventDefault()
+        if confirm('Borramos?')
+          link = $(this)
+          $.ajax
+            url: 'upload/delete_file/' + link.data('file_id')
+            dataType: 'json'
+            success: (data) ->
+              files = $('#files')
+              if data.status is 'success'
+                $('#output').prepend data.msg
+                link.parents("li").fadeOut 'fast', ->
+                  $(this).remove()
+                  files.html '<p>No Files Uploaded</p>'  if files.find('li').length is 0
+              else
+                alert data.msg
+
+      ###
+       # EDIT LINK
+      ###
+
+      $(document).on 'click', '.edit_file_link', (e) ->
+        e.preventDefault()
+        linkName = prompt('Nuevo Link:', decodeURIComponent($(this).data("file_link")))
+        if linkName != null
+          link = $(this)
+          $.ajax
+            type: 'post'
+            url: 'upload/update_link/' + link.data("file_id") + '/'
+            data: {linkName : encodeURIComponent(linkName)},
+            dataType: 'json'
+            success: (data) ->
+              $('#output').prepend data.msg
+              $.get('upload/files').success (dataReq) ->
+                $('#files').html dataReq
+
+      ###
+       # EDIT FILENAME
+      ###
+
+      $(document).on 'click', '.edit_file_name', (e) ->
+        e.preventDefault()
+        fileName = prompt('Nuevo Nombre:', decodeURIComponent($(this).data("file_title")))
+        if fileName != '' || fileName != null
+          link = $(this)
+          $.ajax
+            type: 'post'
+            url: 'upload/update_name/' + link.data("file_id") + '/'
+            data: {fileName : fileName},
+            dataType: 'json'
+            success: (data) ->
+              $('#output').prepend data.msg
+              $.get('upload/files').success (dataReq) ->
+                $('#files').html dataReq
+
+      ###
+       # ENABLE DISABLE
+      ###
+
+      $(document).on 'click', '.edit_file_enabled', (e) ->
+        e.preventDefault()
+        fileEnabled = $(this).data('file_enabled')
+        if fileEnabled != '' || fileEnabled != null
+          if fileEnabled == 1
+            fileEnabledNew = 0
+          else if fileEnabled == 0
+            fileEnabledNew = 1
+          link = $(this)
+          link.parent().parent().parent().fadeOut('slow')
+          $.ajax
+            type: 'post'
+            url: 'upload/update_enabled/' + link.data("file_id") + '/'
+            data: {fileEnabled : fileEnabledNew},
+            dataType: 'json'
+            success: (data) ->
+              $('#output').prepend data.msg
+              $.get('upload/files').success (dataReq) ->
+                $('#files').html dataReq
+
+    $('#FileUploader').resetForm() # reset form
+    $('.progress').fadeOut('fast')
+    $('#uploadButton').removeAttr 'disabled' #enable submit button
+
+  _refresh_files = ->
+    $.get('./upload/files/').success (data) ->
+      $('#files').html data
+
+  _magikMenu = (e) ->
+
+    e.each (index, elem) ->
+      anim = 
+        width: 'toggle'
+        #height: 'toggle'
+      duration = 2000
+      specialEasing =
+        width: 'linear'
+        #height: 'easeOutBounce'
+      $(elem).attr('target', '_blank');
+      $(elem).children('span').animate(anim)
+      $(elem).on 'mouseenter', (event) ->
+        #$this = @
+        ((el) ->
+          complete = () ->
+            #_log 'animEnter'
+
+          el.children('span').animate(anim)
+        ) $(elem)
+      $(elem).on 'mouseleave', (event) ->
+        ((el) ->
+          duration = 4000
+          complete = () ->
+            #_log 'animLeave'
+
+          el.children('span').animate(anim)
+        ) $(elem)
+
+  _resizeItems = () ->
+    wWin = $(window).width()
+    #$('#description').css('position', 'relative')
+    #$('#description').css('height', 'auto')
+    #$('.row-bordered').css('position', 'relative')
+    #$('.row-bordered').css('height', 'auto')
+    rel = false
+    doit = false
+    cells = 4
+    offset = 0
+    if (wWin < 768)
+      rel = true
+      cells = 3
+      offset = 0
+    else if (wWin >= 768 && wWin < 980)
+      rel = false
+      cells = 3
+      offset = 0
+    $('#description').css('height', 'auto')
+    hDesc = $('#description').height()
+    $('#slideshow').css('height', 'auto')
+    hSlide = $('#slideshow').height()
+    #_log 'win:' + wWin + ' ---> hDesc:' + hDesc + '---hSlide:' + hSlide
+
+    if hSlide > hDesc && hSlide > 100
+      #_log "resized"
+      doit = true
+      rowBordered = (hSlide / cells) + offset
+      hDescNew = hSlide - rowBordered
+    else 
+      #_log "resizedInv"
+      hDesc = hSlide
+      doit = false
+
+    if doit
+      if !rel
+        #$('#slideshow').height(hDesc)
+        $('.row-holder').height(hDescNew)
+        $('.row-bordered').css('position', 'absolute')
+        $('.row-bordered').css('min-width', '100%')
+        #$('.row-bordered').height((hSlide / cells) + offset)
+        $('.row-bordered').css('height', rowBordered)
+        $('.row-bordered').css('top', hDescNew)
+        $('.row-bordered').css('width', 'auto')
+        $('.row-bordered').css('z-index', '9999')
+        #$('.row-bordered').css('top', 'auto')
+        $('.row-bordered').css('bottom', '2px')
+
+        $('.social-btns').css('position', 'absolute')
+        $('.social-btns').css('bottom', '2px')
+
+      else
+        $('.row-bordered').css('position', 'relative')
+        $('.social-btns').css('position', 'relative')
+        $('.row-holder').css('height', 'auto')
+        $('.row-bordered').css('height', 'auto')
+        $('.row-bordered').css('min-width', 'auto')
+        $('.row-bordered').css('width', 'auto')
+        $('.row-bordered').css('top', 'auto')
+        $('.row-bordered').css('bottom', 'auto')
+
+        $('.social-btns').css('position', 'relative')
+        $('.social-btns').css('bottom', '1px')
+
+  _wrtIframe = (id, url, ancho, alto, scrolling, allowtransparency) ->
+    $('<iframe src="' + url + '" width="' + ancho + '" height="' + alto + '" scrolling="' + scrolling + '" allowtransparency="' + allowtransparency + '" frameborder="0"></iframe>').appendTo "#" + id
+
+  _wrtTweet =  (d) ->
+    js = undefined
+    fjs = d.getElementsByTagName('script')[0]
+    unless d.getElementById('twitter-wjs')
+      js = d.createElement('script')
+      js.id = 'twitter-wjs'
+      js.src = '//platform.twitter.com/widgets.js'
+      fjs.parentNode.insertBefore js, fjs
+
+  _wrtGplus =  (d) ->
+    gp = undefined
+    fgp = d.getElementsByTagName('script')[0]
+    unless d.getElementById('gplus-wgp')
+      gp = d.createElement('script')
+      gp.id = 'gplus-wgp'
+      gp.src = '//apis.google.com/js/plusone.js'
+      gp.text = '{lang: "es"}'
+      fgp.parentNode.insertBefore gp, fgp
+
+  _log = (msg) ->
+    console.log msg
+
+  _msgRenderLink =  (lat, lon, dest1, dest2) ->
+    s = config.settings
+    $('<a class="btn btn-danger" href="' + 'http://maps.google.es/maps?f=d&source=s_d&saddr=' + lat + ',' + lon + '&daddr=' + dest1 + '" target="_blank">Cómo llegar</a>').appendTo s.getdirDiv
+    $('<a class="btn btn-danger" href="' + 'http://maps.google.es/maps?f=d&source=s_d&saddr=' + lat + ',' + lon + '&daddr=' + dest2 + '" target="_blank">Cómo llegar</a>').appendTo s.getdirDivP
+    $('<a class="btn btn-danger" href="' + 'http://maps.google.es/maps?f=d&source=s_d&saddr=' + lat + ',' + lon + '&daddr=' + dest2 + '" target="_blank">Cómo llegar</a>').appendTo s.getdirDivD
+
+  _renderLink = (lat, lon, dest1, dest2, dest3) ->
+    s = config.settings
+
+    $('<a class="btn btn-danger" href="' + 'http://maps.google.es/maps?f=d&source=s_d&saddr=' + lat + ',' + lon + '&daddr=' + dest1 + '" target="_blank"><i class="icon-road"></i><span> Ruta</span></a>').appendTo s.getdirDiv
+    $('<a class="btn btn-danger" href="' + 'http://maps.google.es/maps?f=d&source=s_d&saddr=' + lat + ',' + lon + '&daddr=' + dest1 + '&t=v&dirflg=w&mra=ltm&z=16' +'" target="_blank"><i class="icon-umbrella"></i><span> Pie</span></a>').appendTo s.getdirDiv
+    $('<a class="btn btn-danger" href="' + 'http://maps.google.es/maps?f=d&source=s_d&saddr=' + lat + ',' + lon + '&daddr=' + dest1 + '&t=v&dirflg=r&ttype=now&noexp=0&noal=0&sort=def&mra=ltm&z=16&start=0' + '" target="_blank"><i class="icon-dashboard"></i><span> Bus</span></a>').appendTo s.getdirDiv
+
+    $('<a class="btn btn-danger" href="' + 'http://maps.google.es/maps?f=d&source=s_d&saddr=' + lat + ',' + lon + '&daddr=' + dest2 + '" target="_blank"><i class="icon-road"></i><span> Ruta</span></a>').appendTo s.getdirDivP
+    $('<a class="btn btn-danger" href="' + 'http://maps.google.es/maps?f=d&source=s_d&saddr=' + lat + ',' + lon + '&daddr=' + dest2 + '&t=v&dirflg=w&mra=ltm&z=16' +'" target="_blank"><i class="icon-umbrella"></i><span> Pie</span></a>').appendTo s.getdirDivP
+    $('<a class="btn btn-danger" href="' + 'http://maps.google.es/maps?f=d&source=s_d&saddr=' + lat + ',' + lon + '&daddr=' + dest2 + '&t=v&dirflg=r&ttype=now&noexp=0&noal=0&sort=def&mra=ltm&z=16&start=0' + '" target="_blank"><i class="icon-dashboard"></i><span> Bus</span></a>').appendTo s.getdirDivP
+      
+    $('<a class="btn btn-danger" href="' + 'http://maps.google.es/maps?f=d&source=s_d&saddr=' + lat + ',' + lon + '&daddr=' + dest3 + '" target="_blank"><i class="icon-road"></i><span> Ruta</span></a>').appendTo s.getdirDivD
+    $('<a class="btn btn-danger" href="' + 'http://maps.google.es/maps?f=d&source=s_d&saddr=' + lat + ',' + lon + '&daddr=' + dest3 + '&t=v&dirflg=w&mra=ltm&z=16' +'" target="_blank"><i class="icon-umbrella"></i><span> Pie</span></a>').appendTo s.getdirDivD
+    $('<a class="btn btn-danger" href="' + 'http://maps.google.es/maps?f=d&source=s_d&saddr=' + lat + ',' + lon + '&daddr=' + dest3 + '&t=v&dirflg=r&ttype=now&noexp=0&noal=0&sort=def&mra=ltm&z=16&start=0' + '" target="_blank"><i class="icon-dashboard"></i><span> Bus</span></a>').appendTo s.getdirDivD
+
+    _magikMenu $('.loc-menu a')
+
+  _useGeolocation = (position) ->
+    #_log "OK-Geolocation" + position
+    latitude = position.coords.latitude
+    longitude = position.coords.longitude
+
+    config.position.lat = position.coords.latitude
+    config.position.lon = position.coords.longitude
+
+  _onGeolocationError = () ->
+    #_log "Error en Geolocation"
+
+
+  ###
+   # GO!
+  ###
+
+  init: init
+
+)(APPBIO, jQuery, Modernizr)

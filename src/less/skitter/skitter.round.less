@@ -1,0 +1,86 @@
+
+/*
+ * round
+ */
+
+.skitter-round {
+  .next_button:hover,
+  .prev_button:hover {
+    opacity:1;
+  }
+  .prev_button {
+    left:-23px;
+    display:block;
+    width:23px;
+    height:47px;
+    background:url('../images/sprite-round.png') no-repeat;
+    background-position:-0px -0px;
+  }
+  .next_button {
+    right:-23px;
+    display:block;
+    width:23px;
+    height:47px;
+    background:url('../images/sprite-round.png') no-repeat;
+    background-position:-23px -0px;
+  }
+  .play_pause_button {
+    top:24px;
+    left:24px;
+    display:block;
+    width:47px;
+    height:23px;
+    background:url('../images/sprite-round.png') no-repeat;
+    background-position:-0px -70px;
+  }
+  .focus_button {
+    top:24px;
+    left:82px;
+    display:block;
+    width:47px;
+    height:23px;
+    background:url('../images/sprite-round.png') no-repeat;
+    background-position:-0px -93px;
+  }
+  .play_pause_button.play_button {
+    top:24px;
+    width:47px;
+    height:23px;
+    background-position:-0px -47px;
+  }
+  .info_slide {
+    background:transparent;
+    .image_number_select, .image_number_select:hover {
+      background:#111111;
+    }
+    .image_number {
+      background:@grayLight;
+      box-shadow:rgba(255,255,255,0.2) 1px 1px 0;
+      font-weight:normal;
+      font-size:12px;
+    }
+    .image_number:hover {
+      background:@grayDark;
+    }
+  }
+  .info_slide_dots {
+    .image_number_select, .image_number_select:hover {
+      background:#111111;
+    }
+    .image_number {
+      width:14px;
+      height:14px;
+      background:@grayLight;
+      box-shadow:rgba(255,255,255,0.2) 1px 1px 0;
+    }
+    .image_number:hover {
+      background:@grayDark;
+    }
+  }
+  .progressbar {
+    top:-10px;
+    left:0px;
+    background:@grayDark;
+    box-shadow:rgba(255,255,255,0.3) 1px 1px 0;
+  }
+}

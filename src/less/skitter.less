@@ -1,0 +1,420 @@
+/* CUSTOm VARS */
+
+@dist: 1.0em;
+@pad: @dist / 4;
+
+
+#skitter {
+  .default_pn (@dist) {
+    position:absolute;
+    z-index:152;
+    display:block;
+    overflow:hidden;
+    width:@dist * 2;
+    height:@dist * 2;
+    font-size: @dist;
+    line-height: @dist;
+    /*text-indent:-9999em;*/
+    .transition (all 0.2s);
+  }
+  .minimalist_pn (@dist) {
+    display:block;
+    width:50%;
+    height:100%;
+    font-size: @dist;
+    margin:0;
+    padding:0;
+    .box-sizing (border-box);
+    &:after {
+      font-family: 'FontAwesome';
+      font-weight: normal;
+      font-style: normal;
+      text-decoration: inherit;
+      -webkit-font-smoothing: antialiased;
+      font-size: @dist;
+      line-height: 1.61;
+      text-align: center;
+      display: inline-block;
+      .border-radius (@pad);
+      #gradient > .vertical (@white, @white);
+
+    /* sprites.less reset */
+      width: @dist * 1.61;
+      height: @dist * 1.61;
+      margin: 50% @pad 0 @pad;
+      /* font itself */
+    }
+  }
+  .prnxt (@dist) {
+    display:block;
+    width:@dist * 2;
+    height:@dist * 2;
+    font-size: @dist;
+    margin:0;
+    padding: @pad;
+    .box-sizing (border-box);
+    .border-radius (@dist / 2);
+    #gradient > .vertical (@white, @white);
+    &:after {
+      font-family: 'FontAwesome';
+      font-weight: normal;
+      font-style: normal;
+      text-decoration: inherit;
+      -webkit-font-smoothing: antialiased;
+      font-size: @dist * 1.61;
+      line-height: @dist;
+      text-align: center;
+
+    /* sprites.less reset */
+      display: block;
+      width: 100%;
+      height: 100%;
+      margin-top: 0;
+      /* font itself */
+    }
+  }
+}
+
+.border_box {
+  position: relative;
+  margin-top: @dist;
+  height: auto;
+  .box-sizing (border-box);
+}
+
+.box_skitter {
+  position:relative;
+  background:@black;
+  .border-radius (@pad);
+  &.box_skitter_large {
+    width:1170px;
+    height:658px;
+  }
+  &.box_skitter_small {
+    width:200px;
+    height:100px;
+  }
+  .prev_button:hover,
+  .next_button:hover {
+    opacity:0.5;
+  }
+  img {
+    max-width: none;
+  }
+  ul {
+    display:none;
+  }
+  .container_skitter {
+    position:relative;
+    overflow:hidden;
+  }
+  .image {
+    overflow:hidden;
+    img {
+      display: none;
+    }
+    .image_main {
+      width: 100%;
+      min-width: 100%;
+      .border-radius (@pad);
+    }
+  }
+  .box_clone {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:20;
+    display:none;
+    overflow:hidden;
+    img {
+      display: block;
+      width: 100%;
+      position:relative;
+      top:0;
+      left:0;
+      z-index:20;
+    }
+  }
+  .prev_button {
+    #skitter > .default_pn (@dist);
+  }
+  .next_button {
+    #skitter > .default_pn (@dist);
+  }
+  .container_thumbs {
+    position:relative;
+    overflow:hidden;
+    height:50px;
+  }
+  .info_slide_thumb {
+    .border-radius (0px);
+    top:auto;
+    top:0;
+    left:0;
+    overflow:hidden;
+    padding:0;
+    height:50px;
+    opacity:1.0;
+    .image_number {
+      .border-radius (0px);
+      position:relative;
+      overflow:hidden;
+      margin:0;
+      padding:0;
+      width:100px;
+      height:50px;
+      img {
+        position:absolute;
+        top:-30px;
+        left:-30px;
+        height:100px;
+      }
+    }
+  }
+  .box_scroll_thumbs {
+    padding:0;
+    .scroll_thumbs {
+      position:absolute;
+      bottom:60px;
+      left:50px;
+      z-index:101;
+      overflow:hidden;
+      width:200px;
+      height:10px;
+      border:0px solid @grayDark;
+      #gradient > .vertical (@gray, @white);
+      text-indent:-9999em;
+      cursor:pointer;
+    }
+  }
+  .info_slide {
+    position:absolute;
+    top:@dist;
+    left:@dist;
+    z-index:100;
+    padding:@pad 0 @pad @pad;
+    .border-radius (@pad);
+    background:@black;
+    color:@white;
+    font:bold 11px arial;
+    opacity:0.75;
+    .image_number {
+      .border-radius (@dist / 3.22);
+      float:left;
+      overflow:hidden;
+      margin:0 @pad 0 0;
+      width:@dist * 3.22;
+      height:auto;
+      background-color:@grayDark;
+      cursor:pointer;
+      text-align: center;
+      font-size: @dist;
+      line-height: 1.61;
+      .transition (all 0.2s);
+      &:hover {
+        background-color: lighten(@grayDark, 10%);
+      }
+      &.image_number_select {
+        background-color:@gray;
+        &:hover {
+          float:left;
+          margin:0 @pad 0 0;
+          background-color: lighten(@gray, 10%);
+        }
+      }
+    }
+  }
+  .info_slide_dots {
+    .border-radius (@dist);
+    position:absolute;
+    bottom: @dist;
+    z-index:151;
+    padding:@pad 0 @pad @pad;
+    .image_number {
+      .border-radius (@dist / 3.22);
+      float:left;
+      overflow:hidden;
+      margin:0 @pad 0 0;
+      width:@dist;
+      height:@dist;
+      background-color:@grayDark;
+      cursor:pointer;
+      text-indent:-9999em;
+      .transition (all 0.2s);
+      &:hover {
+        background-color: lighten(@grayDark, 10%);
+      }
+      &.image_number_select {
+        background:@gray;
+        &:hover {
+          float:left;
+          margin:0 @pad 0 0;
+          background-color: lighten(@gray, 10%);
+        }
+      }
+    }
+  }
+  .label_skitter {
+    position:absolute;
+    bottom:0px;
+    left:0px;
+    left:0px;
+    z-index:150;
+    display:none;
+    color:@white;
+    margin: 0;
+    padding:@dist;
+    .box-sizing (border-box);
+  }
+  .progressbar {
+    position:absolute;
+    top:5px;
+    left:15px;
+    z-index:99;
+    width:200px;
+    height:5px;
+    border-radius:20px;
+    background:@black;
+  }
+  .preview_slide {
+    position:absolute;
+    bottom:30px;
+    left:-40px;
+    z-index:152;
+    display:none;
+    overflow:hidden;
+    width:100px;
+    height:100px;
+    border:1px solid #222222;
+    background:@white;
+    .box-shadow (rgba(0,0,0,0.7) 2px 2px 5px);
+    ul {
+      position:absolute;
+      top:0;
+      left:0;
+      display:block;
+      overflow:hidden;
+      margin:0;
+      height:100px;
+      list-style:none;
+      li {
+        position:relative;
+        display:block;
+        float:left;
+        overflow:hidden;
+        margin:0;
+        padding:0;
+        width:100px;
+        height:100px;
+        img {
+          position:absolute;
+          top:0;
+          left:0;
+          width:auto;
+          height:150px;
+        }
+      }
+    }
+  }
+  .focus_button {
+    position:absolute;
+    top:50%;
+    z-index:100;
+    display:block;
+    overflow:hidden;
+    margin-top:-25px;
+    width:@dist * 2;
+    height:@dist * 2;
+    text-indent:-9999em;
+    opacity:0;
+    .transition (all 0.2s);
+  }
+  .play_pause_button {
+    position:absolute;
+    top:50%;
+    z-index:151;
+    display:block;
+    overflow:hidden;
+    margin-top:-25px;
+    width:@dist * 2;
+    height:@dist * 2;
+    text-indent:-9999em;
+    opacity:0;
+    .transition (all 0.2s);
+  }
+  .play_pause_button.play_button {
+    width:@dist * 2;
+    height:@dist * 2;
+  }
+  .play_pause_button:hover {
+    opacity:0.5;
+  }
+  .focus_button:hover {
+    opacity:0.5;
+  }
+}
+
+.loading {
+  position:absolute;
+  top:50%;
+  right:50%;
+  z-index:10000;
+  overflow:hidden;
+  margin:-@dist -@dist;
+  width:@dist * 2;
+  height:@dist * 2;
+  background:url(../images/ajax-loader.gif) no-repeat left top;
+  color:@white;
+  text-indent:-9999em;
+}
+
+#overlay_skitter {
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:9998;
+  width:100%;
+  background:@black;
+  opacity:1;
+}
+
+@media (max-width: 767px) {
+  .box_skitter {
+   &.box_skitter_large {
+      width:100%;
+      height:300px;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  .box_skitter {
+   &.box_skitter_large {
+      width:724px;
+      height:407px;
+    }
+  }
+}
+
+@media (min-width: 980px) and (max-width: 1199px) {
+  .box_skitter {
+    width:940px;
+    height:528px;
+    &.box_skitter_large {
+      width:940px;
+      height:528px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .box_skitter {
+    width:1170px;
+    height:658px;
+    &.box_skitter_large {
+      width:1170px;
+      height:658px;
+    }
+  }
+}
+
